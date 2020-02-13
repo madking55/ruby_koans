@@ -117,12 +117,12 @@ class AboutMethods < Neo::Koan
     assert_equal 'a secret', my_private_method
   end
 
-  # def test_calling_private_methods_with_an_explicit_receiver
-  #   exception = assert_raise(___) do
-  #     my_private_method
-  #   end
-  #   assert_match /__/, exception.message
-  # end
+  def test_calling_private_methods_with_an_explicit_receiver
+    exception = assert_raise(NoMethodError) do
+      self.my_private_method
+    end
+    assert_match /private method `my_private_method' called for/, exception.message
+  end
 
   # ------------------------------------------------------------------
 
