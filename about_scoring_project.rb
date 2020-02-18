@@ -29,8 +29,19 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 #
 # Your goal is to write the score method.
 
+
 def score(dice)
-  # You need to write this method
+  result = 0
+  (1..6).each do |num|
+    count_num = dice.count(num)
+    if count_num >= 3
+      result += (num == 1 ? 1000 : num * 100)
+      count_num -= 3
+    end
+    result += 100 * count_num if num == 1
+    result += 50 * count_num if num == 5
+  end
+  result
 end
 
 class AboutScoringProject < Neo::Koan
